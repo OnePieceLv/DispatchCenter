@@ -95,8 +95,8 @@
 		B0209CF925DAD0680049157D = {
 			isa = PBXGroup;
 			children = (
+				B0209DA625DAEC3B0049157D /* Documentation */,
 				B0209D3625DADC020049157D /* Deployment */,
-				B0209D2F25DADBCE0049157D /* Documentation */,
 				B0209D2925DADB2D0049157D /* DispatchCenter */,
 				B0209D0525DAD0680049157D /* Support Files */,
 				B0209D1025DAD0690049157D /* DispatchCenterTests */,
@@ -143,14 +143,6 @@
 			path = DispatchCenter;
 			sourceTree = "<group>";
 		};
-		B0209D2F25DADBCE0049157D /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				B0209D2225DADAF70049157D /* README.md */,
-			);
-			path = Documentation;
-			sourceTree = "<group>";
-		};
 		B0209D3625DADC020049157D /* Deployment */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +150,14 @@
 				B0209D2325DADAF70049157D /* DispatchCenter.podspec */,
 			);
 			name = Deployment;
+			sourceTree = "<group>";
+		};
+		B0209DA625DAEC3B0049157D /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				B0209D2225DADAF70049157D /* README.md */,
+			);
+			name = Documentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
