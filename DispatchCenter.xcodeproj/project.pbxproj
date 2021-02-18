@@ -13,15 +13,29 @@
 		B0209D2425DADAF80049157D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B0209D2125DADAF70049157D /* LICENSE */; };
 		B0209D2525DADAF80049157D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B0209D2225DADAF70049157D /* README.md */; };
 		B0209D2625DADAF80049157D /* DispatchCenter.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B0209D2325DADAF70049157D /* DispatchCenter.podspec */; };
-		B0209D3E25DAE3B50049157D /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D3D25DAE3B50049157D /* Provider.swift */; };
+		B0209D3E25DAE3B50049157D /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D3D25DAE3B50049157D /* ServiceProvider.swift */; };
 		B0209D4225DAE3C10049157D /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4125DAE3C10049157D /* ServiceManager.swift */; };
-		B0209D4625DAE3CF0049157D /* Resolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4525DAE3CF0049157D /* Resolve.swift */; };
+		B0209D4625DAE3CF0049157D /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4525DAE3CF0049157D /* Resolver.swift */; };
 		B0209D5725DAE4320049157D /* DispatchCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0209D4E25DAE4310049157D /* DispatchCenter.framework */; };
 		B0209D7D25DAE67F0049157D /* DispatchCenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D1125DAD0690049157D /* DispatchCenterTests.swift */; };
-		B0209D8A25DAE7730049157D /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D3D25DAE3B50049157D /* Provider.swift */; };
+		B0209D8A25DAE7730049157D /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D3D25DAE3B50049157D /* ServiceProvider.swift */; };
 		B0209D8F25DAE7760049157D /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4125DAE3C10049157D /* ServiceManager.swift */; };
-		B0209D9425DAE7780049157D /* Resolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4525DAE3CF0049157D /* Resolve.swift */; };
+		B0209D9425DAE7780049157D /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4525DAE3CF0049157D /* Resolver.swift */; };
 		B0209D9925DAE77C0049157D /* DispatchCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B0209D0625DAD0680049157D /* DispatchCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B0209DB225DC11ED0049157D /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DB125DC11ED0049157D /* ServiceKey.swift */; };
+		B0209DB325DC11ED0049157D /* ServiceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DB125DC11ED0049157D /* ServiceKey.swift */; };
+		B0209DB925DC33C10049157D /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DB825DC33C10049157D /* SpinLock.swift */; };
+		B0209DBA25DC33C10049157D /* SpinLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DB825DC33C10049157D /* SpinLock.swift */; };
+		B0209DC025DD59510049157D /* ServiceProviderEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DBF25DD59510049157D /* ServiceProviderEntry.swift */; };
+		B0209DC125DD59510049157D /* ServiceProviderEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DBF25DD59510049157D /* ServiceProviderEntry.swift */; };
+		B0209DD325DD9A310049157D /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DD225DD9A310049157D /* BaseTestCase.swift */; };
+		B0209DD425DD9A310049157D /* BaseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DD225DD9A310049157D /* BaseTestCase.swift */; };
+		B0209DDA25DD9C0C0049157D /* ServiceManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DD925DD9C0C0049157D /* ServiceManagerTestCase.swift */; };
+		B0209DDB25DD9C0C0049157D /* ServiceManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209DD925DD9C0C0049157D /* ServiceManagerTestCase.swift */; };
+		B087C7D425DED2DA0095954F /* ServiceKeyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087C7D325DED2DA0095954F /* ServiceKeyTestCase.swift */; };
+		B087C7D525DED2DA0095954F /* ServiceKeyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087C7D325DED2DA0095954F /* ServiceKeyTestCase.swift */; };
+		B087C7DF25DED9910095954F /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087C7DE25DED9910095954F /* DebugHelper.swift */; };
+		B087C7E025DED9910095954F /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B087C7DE25DED9910095954F /* DebugHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,11 +65,18 @@
 		B0209D2125DADAF70049157D /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B0209D2225DADAF70049157D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B0209D2325DADAF70049157D /* DispatchCenter.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DispatchCenter.podspec; sourceTree = "<group>"; };
-		B0209D3D25DAE3B50049157D /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		B0209D3D25DAE3B50049157D /* ServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
 		B0209D4125DAE3C10049157D /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
-		B0209D4525DAE3CF0049157D /* Resolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolve.swift; sourceTree = "<group>"; };
+		B0209D4525DAE3CF0049157D /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
 		B0209D4E25DAE4310049157D /* DispatchCenter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DispatchCenter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0209D5625DAE4320049157D /* DispatchCenterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DispatchCenterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0209DB125DC11ED0049157D /* ServiceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKey.swift; sourceTree = "<group>"; };
+		B0209DB825DC33C10049157D /* SpinLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinLock.swift; sourceTree = "<group>"; };
+		B0209DBF25DD59510049157D /* ServiceProviderEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderEntry.swift; sourceTree = "<group>"; };
+		B0209DD225DD9A310049157D /* BaseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTestCase.swift; sourceTree = "<group>"; };
+		B0209DD925DD9C0C0049157D /* ServiceManagerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManagerTestCase.swift; sourceTree = "<group>"; };
+		B087C7D325DED2DA0095954F /* ServiceKeyTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceKeyTestCase.swift; sourceTree = "<group>"; };
+		B087C7DE25DED9910095954F /* DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +118,7 @@
 			children = (
 				B0209DA625DAEC3B0049157D /* Documentation */,
 				B0209D3625DADC020049157D /* Deployment */,
-				B0209D2925DADB2D0049157D /* DispatchCenter */,
+				B0209D2925DADB2D0049157D /* Sources */,
 				B0209D0525DAD0680049157D /* Support Files */,
 				B0209D1025DAD0690049157D /* DispatchCenterTests */,
 				B0209D0425DAD0680049157D /* Products */,
@@ -127,20 +148,27 @@
 		B0209D1025DAD0690049157D /* DispatchCenterTests */ = {
 			isa = PBXGroup;
 			children = (
+				B0209DD925DD9C0C0049157D /* ServiceManagerTestCase.swift */,
+				B0209DD225DD9A310049157D /* BaseTestCase.swift */,
 				B0209D1125DAD0690049157D /* DispatchCenterTests.swift */,
 				B0209D1325DAD0690049157D /* Info.plist */,
+				B087C7D325DED2DA0095954F /* ServiceKeyTestCase.swift */,
 			);
 			path = DispatchCenterTests;
 			sourceTree = "<group>";
 		};
-		B0209D2925DADB2D0049157D /* DispatchCenter */ = {
+		B0209D2925DADB2D0049157D /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				B0209D3D25DAE3B50049157D /* Provider.swift */,
+				B0209D3D25DAE3B50049157D /* ServiceProvider.swift */,
 				B0209D4125DAE3C10049157D /* ServiceManager.swift */,
-				B0209D4525DAE3CF0049157D /* Resolve.swift */,
+				B0209D4525DAE3CF0049157D /* Resolver.swift */,
+				B0209DB125DC11ED0049157D /* ServiceKey.swift */,
+				B0209DB825DC33C10049157D /* SpinLock.swift */,
+				B0209DBF25DD59510049157D /* ServiceProviderEntry.swift */,
+				B087C7DE25DED9910095954F /* DebugHelper.swift */,
 			);
-			path = DispatchCenter;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		B0209D3625DADC020049157D /* Deployment */ = {
@@ -338,9 +366,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0209D4625DAE3CF0049157D /* Resolve.swift in Sources */,
-				B0209D3E25DAE3B50049157D /* Provider.swift in Sources */,
+				B0209DB925DC33C10049157D /* SpinLock.swift in Sources */,
+				B0209DC025DD59510049157D /* ServiceProviderEntry.swift in Sources */,
+				B0209D4625DAE3CF0049157D /* Resolver.swift in Sources */,
+				B0209DB225DC11ED0049157D /* ServiceKey.swift in Sources */,
+				B0209D3E25DAE3B50049157D /* ServiceProvider.swift in Sources */,
 				B0209D4225DAE3C10049157D /* ServiceManager.swift in Sources */,
+				B087C7DF25DED9910095954F /* DebugHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +380,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0209DD325DD9A310049157D /* BaseTestCase.swift in Sources */,
+				B087C7D425DED2DA0095954F /* ServiceKeyTestCase.swift in Sources */,
+				B0209DDA25DD9C0C0049157D /* ServiceManagerTestCase.swift in Sources */,
 				B0209D1225DAD0690049157D /* DispatchCenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,9 +391,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0209D9425DAE7780049157D /* Resolve.swift in Sources */,
-				B0209D8A25DAE7730049157D /* Provider.swift in Sources */,
+				B0209DBA25DC33C10049157D /* SpinLock.swift in Sources */,
+				B0209DC125DD59510049157D /* ServiceProviderEntry.swift in Sources */,
+				B0209D9425DAE7780049157D /* Resolver.swift in Sources */,
+				B0209DB325DC11ED0049157D /* ServiceKey.swift in Sources */,
+				B0209D8A25DAE7730049157D /* ServiceProvider.swift in Sources */,
 				B0209D8F25DAE7760049157D /* ServiceManager.swift in Sources */,
+				B087C7E025DED9910095954F /* DebugHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,6 +405,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0209DD425DD9A310049157D /* BaseTestCase.swift in Sources */,
+				B087C7D525DED2DA0095954F /* ServiceKeyTestCase.swift in Sources */,
+				B0209DDB25DD9C0C0049157D /* ServiceManagerTestCase.swift in Sources */,
 				B0209D7D25DAE67F0049157D /* DispatchCenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
