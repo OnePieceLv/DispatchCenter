@@ -22,11 +22,6 @@ extension ServiceManager {
 
 extension ServiceManager {
     
-    public func openURL<ServiceProvider: ServiceProviderProtocol, Arguments>(url: URLConvertible, serviceType: ServiceProvider.Type, arguments: Arguments) -> ServiceProvider? {
-        
-        return self.urlRouter.resolve(serviceType: serviceType, url: url, arguments: arguments)
-    }
-    
     public func openURL<ServiceProvider: ServiceProviderProtocol>(url: URLConvertible, serviceType: ServiceProvider.Type) -> ServiceProvider? {
         return self.urlRouter.resolve(serviceType: serviceType, url: url)
     }

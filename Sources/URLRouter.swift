@@ -9,11 +9,11 @@ import Foundation
 
 final class URLRouter {
     
-    private lazy var routes: [String: ProviderEntryProtocol] = [:]
+    private lazy var routes: [URL: ProviderEntryProtocol] = [:]
     
     private let lock: SpinLock = SpinLock()
     
-    subscript(url: String) -> ProviderEntryProtocol? {
+    subscript(url: URL) -> ProviderEntryProtocol? {
         get { lock.sync { routes[url] } }
         set { lock.sync { routes[url] = newValue } }
     }
@@ -29,25 +29,23 @@ final class URLRouter {
     }
     
     fileprivate func _register<ServiceProvider: ServiceProviderProtocol, Arguments>(url: String, factory: @escaping ((Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
-        let key = url
         let entry = ProviderEntry(serviceType: ServiceProvider.self, argumentsType: Arguments.self, factory: factory)
+        guard let key = url.asURL  else { return nil }
         self[key] = entry
         return entry
     }
     
     func unregister(url: URLConvertible) -> ProviderEntryProtocol? {
-        let key = url.asString
-        let entry = self[key]
-        if entry != nil {
-            self[key] = nil
-        }
+        guard let key = url.asURL else { return nil }
+        guard let entry = self[key] else { return nil }
+        self[key] = nil
         return entry
     }
     
-    fileprivate func handle<ServiceProvider: ServiceProviderProtocol, Factory>(_ convertible: URLConvertible, serviceType: ServiceProvider.Type, factory: @escaping (Factory) -> ServiceProvider) -> ServiceProvider? {
+    fileprivate func handle<ServiceProvider: ServiceProviderProtocol, Factory>(_ key: URL, serviceType: ServiceProvider.Type, invoke: @escaping (Factory) -> ServiceProvider) -> ServiceProvider? {
         var service: ServiceProvider?
-        if let entry = self[convertible.asString] {
-            service = factory(entry.factory as! Factory)
+        if let entry = self[key] {
+            service = invoke(entry.factory as! Factory)
         }
         return service
     }
@@ -56,23 +54,27 @@ final class URLRouter {
 extension URLRouter {
     @discardableResult
     func canOpenURL(url: String) -> Bool {
-        let entry = self[url]
-        return entry != nil && entry?.serviceType != nil && entry?.factory != nil
+        guard let key = url.asURL else { return false }
+        guard let entry = self[key] else { return false }
+        return entry.factory != nil
     }
 }
 
 extension URLRouter: URLResolver {
     
     func resolve<ServiceProvider: ServiceProviderProtocol>(serviceType: ServiceProvider.Type, url: URLConvertible) -> ServiceProvider? {
-        return handle(url, serviceType: serviceType) { (factory: (URLResolver) -> ServiceProvider) -> ServiceProvider in
-            return factory(self)
+        guard let url = url.asURL else { return nil }
+        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
+        let parameters = urlComponents.queryItems?.reduce([String:String]()) {
+            var dict = $0
+            if let value = $1.value {
+                dict[$1.name] = value
+            }
+            return dict
+        } ?? [:]
+        return handle(url, serviceType: serviceType) { (factory: ((URLResolver, [String: String])) -> ServiceProvider) -> ServiceProvider in
+            return factory((self, parameters))
         }
     }
     
-    func resolve<ServiceProvider: ServiceProviderProtocol, Arguments>(serviceType: ServiceProvider.Type, url: URLConvertible, arguments: Arguments) -> ServiceProvider? {
-        typealias Factory = ((URLResolver, Arguments)) -> ServiceProvider
-        return handle(url, serviceType: serviceType) { (factory: Factory) -> ServiceProvider in
-            return factory((self, arguments))
-        }
-    }
 }
