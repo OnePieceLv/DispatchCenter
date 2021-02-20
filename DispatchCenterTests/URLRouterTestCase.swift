@@ -23,8 +23,8 @@ class URLRouterTestCase: BaseTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let url = "http://animate?name=lv&age=1"
         container.register(url: url) { (resolver, parameter:[String:String]) -> Dog in
-            let name = parameter["name"]
-            let age = Int(parameter["age"]!)
+            let name = parameter["name"]!
+            let age = Int(parameter["age"]!)!
             let dog = Dog.init(["name": name, "age": age])
             return dog
         }
@@ -46,11 +46,11 @@ class URLRouterTestCase: BaseTestCase {
         
         let baseURL = URL(string: "http://server/foo/")!
         let url3 = URL(string: "bar/file.html", relativeTo: baseURL)!
-        print(url3.absoluteString) // "http://server/foo/bar/file.html"
+        XCTAssertEqual(url3.absoluteString, "http://server/foo/bar/file.html")
         let comp1 = URLComponents(url: url3, resolvingAgainstBaseURL: false)!
-        print(comp1.string!) // "bar/file.html"
+        XCTAssertEqual(comp1.string!, "bar/file.html")
         let comp2 = URLComponents(url: url3, resolvingAgainstBaseURL: true)!
-        print(comp2.string!) // "http://server/foo/bar/file.html"
+        XCTAssertEqual(comp2.string!, "http://server/foo/bar/file.html")
     }
 
 //    func testPerformanceExample() throws {
