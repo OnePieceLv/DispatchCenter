@@ -12,8 +12,10 @@ public final class ServiceManager {
     private var services: [ServiceKey: ProviderEntryProtocol] = [:]
     
     private let logger: DebugHelper = LoggingHelper()
+    
+    let urlRouter: URLRouter = URLRouter()
         
-    let lock: SpinLock = SpinLock()
+    private let lock: SpinLock = SpinLock()
     
     subscript(key: ServiceKey) -> ProviderEntryProtocol? {
         get {
@@ -24,12 +26,12 @@ public final class ServiceManager {
         }
     }
     
-    func removeAll() -> Void {
+    func unRegisterAll() -> Void {
         services.removeAll()
     }
     
     deinit {
-        removeAll()
+        unRegisterAll()
     }
     
     @discardableResult

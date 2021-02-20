@@ -22,8 +22,8 @@ class Dog: ServiceProviderProtocol {
     convenience init(_ parameter: [String : Any]) {
         let age = parameter["age"] as? Int ?? 3
         let name = parameter["name"] as? String ?? "xx"
-//        let arguments = (name: name, age: age)
-        let arguments = (age: age, name: name) // ❌ Tuple 类型的顺序是有要求的，不然 type cast 会失败
+        let arguments = (name: name, age: age)
+//        let arguments = (age: age, name: name) // ❌ Tuple 类型的顺序是有要求的，不然 type cast 会失败
         self.init(arguments)
     }
     

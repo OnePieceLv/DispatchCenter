@@ -21,3 +21,8 @@ protocol _Resolver {
         factory: @escaping ((Arguments) -> Any) -> Any
     ) -> ServiceProvider?
 }
+
+public protocol URLResolver {
+    func resolve<ServiceProvider: ServiceProviderProtocol>(serviceType: ServiceProvider.Type, url: URLConvertible) -> ServiceProvider?
+    func resolve<ServiceProvider: ServiceProviderProtocol, Arguments>(serviceType: ServiceProvider.Type, url: URLConvertible, arguments: Arguments) -> ServiceProvider? 
+}
