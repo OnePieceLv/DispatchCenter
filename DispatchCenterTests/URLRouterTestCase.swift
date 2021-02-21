@@ -21,14 +21,7 @@ class URLRouterTestCase: BaseTestCase {
     func testWithURLString() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let url = "http://animate?name=lv&age=1"
-//        container.register(url: url) { (resolver, parameter:[String:String]?) -> Dog in
-//            guard let param = parameter else { return Dog([:]) }
-//            let name = param["name"]!
-//            let age = Int(param["age"]!)!
-//            let dog = Dog.init(["name": name, "age": age])
-//            return dog
-//        }
+        let url = "http://animate?name=li&age=1"
         
         container.register(url: url) { (resolve, parameter) -> Dog in
             guard let param = parameter else { return Dog([:]) }
@@ -41,7 +34,7 @@ class URLRouterTestCase: BaseTestCase {
         let dog = container.openURL(url: url, serviceType: Dog.self)
         XCTAssertNotNil(dog)
         
-        XCTAssertEqual(dog?.name, "lv")
+        XCTAssertEqual(dog?.name, "li")
     }
     
     func testWithURL() throws {
@@ -68,5 +61,47 @@ class URLRouterTestCase: BaseTestCase {
 //            // Put the code you want to measure the time of here.
 //        }
 //    }
+    
+    func testWithUnregister() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let url = "http://animate?name=li&age=1"
+        let router = URLRouter.init()
+        
+        _ = router.register(url: url) { (resolver, parameter) -> Dog in
+            guard let param = parameter else { return Dog([:]) }
+            let name = param["name"]!
+            let age = Int(param["age"]!)!
+            let dog = Dog.init(["name": name, "age": age])
+            return dog
+        }
+        
+        _ = router.unregister(url: url)
+        
+        
+        let dog = router.resolve(serviceType: Dog.self, url: url)
+        XCTAssertNil(dog)
+        
+    }
+    
+    func testWithCanOpenURL() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let url = "http://animate?name=li&age=1"
+        let router = URLRouter.init()
+        
+        _ = router.register(url: url) { (resolver, parameter) -> Dog in
+            guard let param = parameter else { return Dog([:]) }
+            let name = param["name"]!
+            let age = Int(param["age"]!)!
+            let dog = Dog.init(["name": name, "age": age])
+            return dog
+        }
+        
+        let isCan = router.canOpenURL(url: url)
+        
+        XCTAssertTrue(isCan)
+        
+    }
 
 }

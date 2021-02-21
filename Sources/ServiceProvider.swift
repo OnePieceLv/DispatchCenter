@@ -8,20 +8,11 @@
 import Foundation
 
 public protocol ServiceProviderProtocol {
-    init<Arguments>(_ arguments: Arguments)
-}
-
-extension ServiceProviderProtocol {
-    
-    init<Arguments>(_ arguments: Arguments) {
-        fatalError("should be implements require init")
-    }
-
+    init(_ arguments: [String:Any]?)
 }
 
 public protocol URLConvertible {
     var asURL: URL? { get }
-    var asString: String { get }
 }
 
 extension String: URLConvertible {
@@ -29,17 +20,11 @@ extension String: URLConvertible {
         return URL(string: self)
     }
     
-    public var asString: String {
-        return self
-    }
 }
 
-extension URL: URLConvertible {
-    public var asString: String {
-        return self.absoluteString
-    }
-    
-    public var asURL: URL? {
-        return  self
-    }
-}
+//extension URL: URLConvertible {
+//
+//    public var asURL: URL? {
+//        return  self
+//    }
+//}

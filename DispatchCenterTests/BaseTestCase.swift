@@ -12,28 +12,16 @@ class Animate: ServiceProviderProtocol {
     
     let name: String
     
-    required init<Arguments>(_ arguments: Arguments) {
-        self.name = arguments as! String
+    required init(_ arguments: [String: Any]? = nil) {
+        self.name = (arguments?["name"] as? String) ?? ""
     }
 }
 
 class Dog: ServiceProviderProtocol {
     
-    convenience init(_ parameter: [String : Any]) {
-        let age = parameter["age"] as? Int ?? 3
-        let name = parameter["name"] as? String ?? "xx"
-        let arguments = (name: name, age: age)
-//        let arguments = (age: age, name: name) // ❌ Tuple 类型的顺序是有要求的，不然 type cast 会失败
-        self.init(arguments)
-    }
-    
-    required init<Arguments>(_ arguments: Arguments) {
-        guard let params = arguments as? (name: String, age: Int) else {
-            fatalError("arguments should be tuple type")
-        }
-        
-        self.name = params.name
-        self.age = params.age
+    required init(_ parameter: [String : Any]? = nil) {
+        self.age = (parameter?["age"] as? Int) ?? 3
+        self.name = (parameter?["name"] as? String) ?? "xx"
     }
     
     let name: String
