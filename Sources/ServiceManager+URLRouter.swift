@@ -10,12 +10,7 @@ import Foundation
 extension ServiceManager {
     
     @discardableResult
-    func register<ServiceProvider: ServiceProviderProtocol>(url: String, factory: @escaping ((URLResolver) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
-        return urlRouter.register(url: url, factory: factory)
-    }
-    
-    @discardableResult
-    func register<ServiceProvider: ServiceProviderProtocol, Arguments>(url: String, factory: @escaping ((URLResolver, Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
+    func register<ServiceProvider: ServiceProviderProtocol>(url: String, factory: @escaping ((URLResolver, [String: String]?) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
         return urlRouter.register(url: url, factory: factory)
     }
 }

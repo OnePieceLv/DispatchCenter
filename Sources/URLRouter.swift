@@ -18,15 +18,11 @@ final class URLRouter {
         set { lock.sync { routes[url] = newValue } }
     }
     
-    func register<ServiceProvider: ServiceProviderProtocol, Arguments>(url: String, factory: @escaping ((URLResolver,Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
+    func register<ServiceProvider: ServiceProviderProtocol>(url: String, factory: @escaping ((URLResolver,[String:String]?) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
         return _register(url: url, factory: factory)
 
     }
     
-    func register<ServiceProvider: ServiceProviderProtocol>(url: String, factory: @escaping ((URLResolver) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
-        
-        return _register(url: url, factory: factory)
-    }
     
     fileprivate func _register<ServiceProvider: ServiceProviderProtocol, Arguments>(url: String, factory: @escaping ((Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
         let entry = ProviderEntry(serviceType: ServiceProvider.self, argumentsType: Arguments.self, factory: factory)
@@ -71,8 +67,8 @@ extension URLRouter: URLResolver {
                 dict[$1.name] = value
             }
             return dict
-        } ?? [:]
-        return handle(url, serviceType: serviceType) { (factory: ((URLResolver, [String: String])) -> ServiceProvider) -> ServiceProvider in
+        }
+        return handle(url, serviceType: serviceType) { (factory: ((URLResolver, [String: String]?)) -> ServiceProvider) -> ServiceProvider in
             return factory((self, parameters))
         }
     }

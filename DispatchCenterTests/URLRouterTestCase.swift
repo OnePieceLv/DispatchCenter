@@ -22,9 +22,18 @@ class URLRouterTestCase: BaseTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let url = "http://animate?name=lv&age=1"
-        container.register(url: url) { (resolver, parameter:[String:String]) -> Dog in
-            let name = parameter["name"]!
-            let age = Int(parameter["age"]!)!
+//        container.register(url: url) { (resolver, parameter:[String:String]?) -> Dog in
+//            guard let param = parameter else { return Dog([:]) }
+//            let name = param["name"]!
+//            let age = Int(param["age"]!)!
+//            let dog = Dog.init(["name": name, "age": age])
+//            return dog
+//        }
+        
+        container.register(url: url) { (resolve, parameter) -> Dog in
+            guard let param = parameter else { return Dog([:]) }
+            let name = param["name"]!
+            let age = Int(param["age"]!)!
             let dog = Dog.init(["name": name, "age": age])
             return dog
         }
