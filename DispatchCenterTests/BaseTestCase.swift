@@ -10,14 +10,26 @@ import XCTest
 
 class Animate: ServiceProviderProtocol {
     
+    static func create(_ arguments: [String : Any]? = nil) -> Self {
+        return self.init(arguments)
+    }
+    
+    
     let name: String
     
     required init(_ arguments: [String: Any]? = nil) {
         self.name = (arguments?["name"] as? String) ?? ""
     }
+    
+    
 }
 
 class Dog: ServiceProviderProtocol {
+    
+    static func create(_ arguments: [String : Any]? = nil) -> Self {
+        return self.init(arguments)
+
+    }
     
     required init(_ parameter: [String : Any]? = nil) {
         self.age = (parameter?["age"] as? Int) ?? 3

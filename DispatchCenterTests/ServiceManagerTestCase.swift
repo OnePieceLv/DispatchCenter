@@ -24,7 +24,7 @@ class ServiceManagerTestCase: BaseTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         container.register(Animate.self) { (container: Resolver) -> Animate in
-            let animate = Animate.init(["name":"pet"])
+            let animate = Animate.create(["name":"pet"])
             return animate
         }
         
@@ -38,7 +38,7 @@ class ServiceManagerTestCase: BaseTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         container.register(Dog.self) { (container, arguments: (name: String, age: Int)) -> Dog in
-            let animate = Dog(["name": arguments.name, "age": arguments.age])
+            let animate = Dog.create(["name": arguments.name, "age": arguments.age])
             return animate
         }
         
@@ -52,7 +52,7 @@ class ServiceManagerTestCase: BaseTestCase {
     
     func testResolveWithDictionaryArguments() throws {
         container.register(Dog.self) { (_, parameters: [String: Any]) -> Dog in
-            return Dog.init(parameters)
+            return Dog.create(parameters)
         }
         
         let dog = container.resolve(Dog.self, arguments: ["name": "cat", "age": 2])
@@ -66,7 +66,7 @@ class ServiceManagerTestCase: BaseTestCase {
     
     func testResolveLoggingFailed() throws {
         container.register(Dog.self) { (_, parameters: [String: String]) -> Dog in
-            return Dog.init(parameters)
+            return Dog.create(parameters)
         }
         
         let dog = container.resolve(Dog.self, arguments: ["name": "cat", "age": 2])
@@ -77,7 +77,7 @@ class ServiceManagerTestCase: BaseTestCase {
     func testWithUnRegisterAll() throws {
         let container = ServiceManager()
         container.register(Dog.self) { (container) -> Dog in
-            return Dog()
+            return Dog.create()
         }
         
         container.unRegisterAll()

@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol ServiceProviderProtocol {
-    init(_ arguments: [String:Any]?)
+    static func create(_ arguments: [String: Any]?) -> Self
 }
 
 public protocol URLConvertible {
@@ -21,10 +21,3 @@ extension String: URLConvertible {
     }
     
 }
-
-//extension URL: URLConvertible {
-//
-//    public var asURL: URL? {
-//        return  self
-//    }
-//}

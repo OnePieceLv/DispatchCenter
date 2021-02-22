@@ -11,6 +11,10 @@ import XCTest
 class ServiceProviderTestCase: BaseTestCase {
     
     class Elephant: ServiceProviderProtocol {
+        static func create(_ arguments: [String : Any]?) -> Self {
+            return self.init(arguments)
+        }
+        
         let name: String
         let age: Int
         required init(_ arguments: [String : Any]? = nil) {
@@ -30,7 +34,7 @@ class ServiceProviderTestCase: BaseTestCase {
     func testWithNotImplementInit() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let elephant = Elephant.init(["name": "daxiang", "age": 3])
+        let elephant = Elephant.create(["name": "daxiang", "age": 3])
         XCTAssertNotNil(elephant)
         XCTAssertEqual(elephant.name, "daxiang")
     }
