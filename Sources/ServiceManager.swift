@@ -26,7 +26,9 @@ public final class ServiceManager {
         }
     }
     
-    func unRegisterAll() -> Void {
+    public init() {}
+    
+    public func unRegisterAll() -> Void {
         services.removeAll()
     }
     
@@ -35,17 +37,17 @@ public final class ServiceManager {
     }
     
     @discardableResult
-    func register<ServiceProvider: ServiceProviderProtocol>(_ serviceType: ServiceProvider.Type, name: String? = nil, factory: @escaping ((Resolver) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
+    public func register<ServiceProvider: ServiceProviderProtocol>(_ serviceType: ServiceProvider.Type, name: String? = nil, factory: @escaping ((Resolver) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
         return _register(serviceType, factory: factory, name: name, option: nil)
     }
     
     @discardableResult
-    func register<ServiceProvider: ServiceProviderProtocol, Arguments>(_ serviceType: ServiceProvider.Type, name: String? = nil, factory: @escaping ((Resolver,Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
+    public func register<ServiceProvider: ServiceProviderProtocol, Arguments>(_ serviceType: ServiceProvider.Type, name: String? = nil, factory: @escaping ((Resolver,Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
         return _register(serviceType, factory: factory, name: name, option: nil)
     }
     
     @discardableResult
-    func register<ServiceProvider: ServiceProviderProtocol>(_ serviceType: ServiceProvider.Type, name: String? = nil, factory: @escaping ((Resolver, Dictionary<String, Any>) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
+    public func register<ServiceProvider: ServiceProviderProtocol>(_ serviceType: ServiceProvider.Type, name: String? = nil, factory: @escaping ((Resolver, Dictionary<String, Any>) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
         return _register(serviceType, factory: factory, name: name, option: nil)
     }
     

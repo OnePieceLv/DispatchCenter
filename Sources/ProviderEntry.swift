@@ -15,7 +15,7 @@ protocol ProviderEntryProtocol {
 }
 
 
-final class ProviderEntry<ServiceProvider>: ProviderEntryProtocol {
+public final class ProviderEntry<ServiceProvider>: ProviderEntryProtocol {
     let serviceType: Any.Type
     let argumentsType: Any.Type
     let factory: FunctionType?
@@ -26,6 +26,4 @@ final class ProviderEntry<ServiceProvider>: ProviderEntryProtocol {
         self.argumentsType = argumentsType
         self.factory = factory
     }
-    
-    
 }
