@@ -21,6 +21,8 @@
 		B01247FC25E3EC08006308C4 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01247FB25E3EC08006308C4 /* CourseViewController.swift */; };
 		B012480125E3EC23006308C4 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012480025E3EC23006308C4 /* SchoolViewController.swift */; };
 		B0A2439325E41504000EE5FA /* ServiceProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2439225E41504000EE5FA /* ServiceProviderManager.swift */; };
+		B0A2446B25E43319000EE5FA /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2446925E43319000EE5FA /* LessonViewController.swift */; };
+		B0A2446C25E43319000EE5FA /* LessonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0A2446A25E43319000EE5FA /* LessonViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		B01247FB25E3EC08006308C4 /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		B012480025E3EC23006308C4 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
 		B0A2439225E41504000EE5FA /* ServiceProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderManager.swift; sourceTree = "<group>"; };
+		B0A2446925E43319000EE5FA /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
+		B0A2446A25E43319000EE5FA /* LessonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonViewController.xib; sourceTree = "<group>"; };
 		D9F1A78807A2640444641203 /* Pods-DispatchCenter-iOSDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DispatchCenter-iOSDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-DispatchCenter-iOSDemoUITests/Pods-DispatchCenter-iOSDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E1FD010B66F91B28518F2B70 /* Pods-DispatchCenter-iOSDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DispatchCenter-iOSDemo.debug.xcconfig"; path = "Target Support Files/Pods-DispatchCenter-iOSDemo/Pods-DispatchCenter-iOSDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		F19299AD7E7A0406A9CD7094 /* Pods-DispatchCenter-iOSDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DispatchCenter-iOSDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-DispatchCenter-iOSDemoUITests/Pods-DispatchCenter-iOSDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 		B012471725E2D7E7006308C4 /* DispatchCenter-iOSDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B0A2446825E432F2000EE5FA /* LessonViewController */,
 				B012475D25E3A975006308C4 /* CourseViewController */,
 				B012475C25E3A964006308C4 /* SchoolViewController */,
 				B012471825E2D7E7006308C4 /* AppDelegate.swift */,
@@ -191,6 +196,15 @@
 				B01247FB25E3EC08006308C4 /* CourseViewController.swift */,
 			);
 			path = CourseViewController;
+			sourceTree = "<group>";
+		};
+		B0A2446825E432F2000EE5FA /* LessonViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B0A2446925E43319000EE5FA /* LessonViewController.swift */,
+				B0A2446A25E43319000EE5FA /* LessonViewController.xib */,
+			);
+			path = LessonViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +316,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A2446C25E43319000EE5FA /* LessonViewController.xib in Resources */,
 				B012472525E2D7E9006308C4 /* LaunchScreen.storyboard in Resources */,
 				B012472225E2D7E9006308C4 /* Assets.xcassets in Resources */,
 				B012472025E2D7E7006308C4 /* Main.storyboard in Resources */,
@@ -449,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A2446B25E43319000EE5FA /* LessonViewController.swift in Sources */,
 				B012471D25E2D7E7006308C4 /* MasterViewController.swift in Sources */,
 				B01247FC25E3EC08006308C4 /* CourseViewController.swift in Sources */,
 				B0A2439325E41504000EE5FA /* ServiceProviderManager.swift in Sources */,

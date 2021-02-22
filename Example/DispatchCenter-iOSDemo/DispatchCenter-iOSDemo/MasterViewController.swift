@@ -8,9 +8,11 @@
 import UIKit
 import DispatchCenter
 
+let url = "dispatch://course/1/lesson"
+
 class MasterViewController: UITableViewController {
     
-    let data: [String] = ["课程","学校"]
+    let data: [String] = ["课程","学校", "present", "push", "show"]
     
 //    let container: ServiceManager = ServiceManager()
 //    let navigator: Navigator = Navigator()
@@ -26,6 +28,11 @@ class MasterViewController: UITableViewController {
         container.register(SchoolViewController.self) { (_) -> SchoolViewController in
             let school = SchoolViewController.create()
             return school
+        }
+        
+        container.register(url: url) { (_, _) -> LessonViewController in
+            return LessonViewController.create()
+            
         }
         
     }
@@ -53,6 +60,14 @@ class MasterViewController: UITableViewController {
         case "学校":
             let school = container.resolve(SchoolViewController.self)!
             navigator.pushViewController(school, animated: false)
+        case "present":
+            navigator.presentURL(url, controllerType: LessonViewController.self, container: container, animated: true) {
+                print("present")
+            }
+        case "push":
+            navigator.pushURL(url, controllerType: LessonViewController.self, container: container, animated: true)
+        case "show":
+            navigator.showURL(url, controllerType: LessonViewController.self, container: container)
         default: break
         }
     }

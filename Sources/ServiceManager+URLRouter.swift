@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ServiceManager {
+public extension ServiceManager {
     
     @discardableResult
     func register<ServiceProvider: ServiceProviderProtocol>(url: String, factory: @escaping ((URLResolver, [String: String]?) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
@@ -15,9 +15,9 @@ extension ServiceManager {
     }
 }
 
-extension ServiceManager {
+public extension ServiceManager {
     
-    public func openURL<ServiceProvider: ServiceProviderProtocol>(url: URLConvertible, serviceType: ServiceProvider.Type) -> ServiceProvider? {
+    func openURL<ServiceProvider: ServiceProviderProtocol>(url: URLConvertible, serviceType: ServiceProvider.Type) -> ServiceProvider? {
         return self.urlRouter.resolve(serviceType: serviceType, url: url)
     }
 }

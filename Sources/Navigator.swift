@@ -34,26 +34,26 @@ extension UIViewController: UIViewControllerType {}
 public protocol NavigatorType {
     
     @discardableResult
-    func pushURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UINavigationControllerType?, animated: Bool) -> ViewController?
+    func pushURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UINavigationControllerType?, container: ServiceManager, animated: Bool) -> ViewController?
     
     @discardableResult
     func pushViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UINavigationControllerType?, animated: Bool) -> ViewController?
     
     @discardableResult
-    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?, animated: Bool, completion: (() -> Void)?) -> ViewController?
+    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?, container: ServiceManager, animated: Bool, completion: (() -> Void)?) -> ViewController?
     
     @discardableResult
     func presentViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType?, animated: Bool, completion: (() -> Void)?) -> ViewController?
 
     
     @discardableResult
-    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?) -> ViewController?
+    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?, container: ServiceManager) -> ViewController?
     
     @discardableResult
     func showViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType?) -> ViewController?
     
     @discardableResult
-    func showDetailURL<DetailViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: DetailViewController.Type, from sender: UIViewControllerType?) -> DetailViewController?
+    func showDetailURL<DetailViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: DetailViewController.Type, from sender: UIViewControllerType?, container: ServiceManager) -> DetailViewController?
     
     @discardableResult
     func showDetailController<DetailViewController: UIViewController & ServiceProviderProtocol>(_ detailViewController: DetailViewController, from sender: UIViewControllerType?) -> DetailViewController?
@@ -64,8 +64,8 @@ public protocol NavigatorType {
 public extension NavigatorType {
     
     @discardableResult
-    func pushURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UINavigationControllerType? = nil, animated: Bool) -> ViewController? {
-        if let viewContoller = ServiceManager.init().openURL(url: url, serviceType: controllerType) {
+    func pushURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UINavigationControllerType? = nil, container: ServiceManager, animated: Bool) -> ViewController? {
+        if let viewContoller = container.openURL(url: url, serviceType: controllerType) {
             return self.pushViewController(viewContoller, from: sender, animated: animated)
         }
         return nil
@@ -80,8 +80,8 @@ public extension NavigatorType {
     
     
     @discardableResult
-    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil, animated: Bool, completion: (() -> Void)?) -> ViewController? {
-        if let viewContoller = ServiceManager.init().openURL(url: url, serviceType: controllerType) {
+    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil, container: ServiceManager, animated: Bool, completion: (() -> Void)?) -> ViewController? {
+        if let viewContoller = container.openURL(url: url, serviceType: controllerType) {
             return self.presentViewController(viewContoller, from: sender, animated: animated, completion: completion)
         }
         return nil
@@ -96,8 +96,8 @@ public extension NavigatorType {
     
     
     @discardableResult
-    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil) -> ViewController? {
-        if let viewContoller = ServiceManager.init().openURL(url: url, serviceType: controllerType) {
+    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil, container: ServiceManager) -> ViewController? {
+        if let viewContoller = container.openURL(url: url, serviceType: controllerType) {
             return self.showViewController(viewContoller, from: sender)
         }
         return nil
@@ -112,8 +112,8 @@ public extension NavigatorType {
     }
     
     @discardableResult
-    func showDetailURL<DetailViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: DetailViewController.Type, from sender: UIViewControllerType? = nil) -> DetailViewController? {
-        guard let detailViewController = ServiceManager().openURL(url: url, serviceType: controllerType) else {
+    func showDetailURL<DetailViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: DetailViewController.Type, from sender: UIViewControllerType? = nil, container: ServiceManager) -> DetailViewController? {
+        guard let detailViewController = container.openURL(url: url, serviceType: controllerType) else {
             return nil
         }
         return self.showDetailController(detailViewController, from: sender)

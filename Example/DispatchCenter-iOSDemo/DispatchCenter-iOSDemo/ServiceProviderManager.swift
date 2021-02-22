@@ -31,3 +31,9 @@ extension SchoolViewController: ServiceProviderProtocol {
 }
 
 
+extension LessonViewController: ServiceProviderProtocol {
+    static func create(_ arguments: [String : Any]? = nil) -> LessonViewController {
+        let lesson = LessonViewController(nibName: "LessonViewController", bundle: nil)
+        return lesson
+    }
+}

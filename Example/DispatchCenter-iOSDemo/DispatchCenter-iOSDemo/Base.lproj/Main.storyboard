@@ -16,8 +16,22 @@
                     <view key="view" contentMode="scaleToFill" id="QVe-6e-wLh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vvb-ei-lOQ">
+                                <rect key="frame" x="162" y="378" width="92" height="30"/>
+                                <state key="normal" title="二元一次方程"/>
+                                <connections>
+                                    <action selector="openLesson:" destination="61m-ME-uKj" eventType="touchUpInside" id="OwL-dI-YiZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="tB7-fa-NeP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Vvb-ei-lOQ" firstAttribute="top" secondItem="tB7-fa-NeP" secondAttribute="top" constant="334" id="GCb-qQ-Mnq"/>
+                            <constraint firstItem="tB7-fa-NeP" firstAttribute="trailing" secondItem="Vvb-ei-lOQ" secondAttribute="trailing" constant="160" id="Jmj-jk-h0q"/>
+                            <constraint firstItem="Vvb-ei-lOQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tB7-fa-NeP" secondAttribute="leading" id="Yqx-2p-ECR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ptz-2f-x10"/>
                 </viewController>

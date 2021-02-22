@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  DispatchCenter: 41ca2b4c1e70e83d80645369bc856ace5e9f64f6
+  DispatchCenter: 73af17ae752f0886cdfebaa2f087e6e7bc7eb96d
 
 PODFILE CHECKSUM: d5008bb76d2df13c85358367bc1bb3aad0e9f1b8
 

@@ -14,6 +14,15 @@ class CourseViewController: UIViewController {
         title = "课程"
         // Do any additional setup after loading the view.
     }
+    @IBAction func openLesson(_ sender: UIButton) {
+//        let lesson = container.openURL(url: url, serviceType: LessonViewController.self)!
+//        navigator.showViewController(lesson)
+//        navigator.showURL(url, controllerType: LessonViewController.self, container: container)
+//        navigator.presentURL(url, controllerType: LessonViewController.self, container: container, animated: true) {
+//            print("present to lesson with url")
+//        }
+        navigator.pushURL(url, controllerType: LessonViewController.self, container: container, animated: true)
+    }
     /*
     // MARK: - Navigation
 
