@@ -102,6 +102,10 @@ class URLRouterTestCase: BaseTestCase {
         
         XCTAssertTrue(isCan)
         
+        let url2 = "http://animate?name=elephant&age=2"
+        let isCan2 = router.canOpenURL(url: url2)
+        XCTAssertFalse(isCan2)
+        
     }
 
 }
