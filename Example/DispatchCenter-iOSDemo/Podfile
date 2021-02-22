@@ -1,0 +1,14 @@
+inhibit_all_warnings!
+use_frameworks!
+
+target 'DispatchCenter-iOSDemo' do
+    pod 'DispatchCenter', :path => '../../'
+end
+
+target 'DispatchCenter-iOSDemoTests' do
+    pod 'DispatchCenter', :path => '../../'
+end
+
+target 'DispatchCenter-iOSDemoUITests' do
+    pod 'DispatchCenter', :path => '../../'
+end

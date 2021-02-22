@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B0209D4D25DAE4310049157D"
+               BlueprintIdentifier = "B012476525E3AD05006308C4"
                BuildableName = "DispatchCenter.framework"
-               BlueprintName = "DispatchCenter-macOS"
+               BlueprintName = "DispatchCenter-tvOS"
                ReferencedContainer = "container:DispatchCenter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B0209D4D25DAE4310049157D"
+            BlueprintIdentifier = "B012476525E3AD05006308C4"
             BuildableName = "DispatchCenter.framework"
-            BlueprintName = "DispatchCenter-macOS"
+            BlueprintName = "DispatchCenter-tvOS"
             ReferencedContainer = "container:DispatchCenter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

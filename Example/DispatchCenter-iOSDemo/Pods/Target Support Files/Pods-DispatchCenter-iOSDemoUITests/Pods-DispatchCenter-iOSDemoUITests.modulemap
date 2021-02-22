@@ -1,0 +1,6 @@
+framework module Pods_DispatchCenter_iOSDemoUITests {
+  umbrella header "Pods-DispatchCenter-iOSDemoUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

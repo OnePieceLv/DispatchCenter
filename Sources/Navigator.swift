@@ -73,7 +73,7 @@ public extension NavigatorType {
     
     @discardableResult
     func pushViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UINavigationControllerType? = nil, animated: Bool) -> ViewController? {
-        guard var navigationController = (sender ?? UIViewController.topMost?.navigationController) else { return nil }
+        guard let navigationController = (sender ?? UIViewController.topMost?.navigationController) else { return nil }
         navigationController.pushViewController(viewController, animated: animated)
         return viewController
     }
@@ -89,7 +89,7 @@ public extension NavigatorType {
     
     @discardableResult
     func presentViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType? = nil, animated: Bool, completion: (() -> Void)?) -> ViewController?{
-        guard var navigationController = sender ?? UIViewController.topMost else { return nil }
+        guard let navigationController = sender ?? UIViewController.topMost else { return nil }
         navigationController.present(viewController, animated: animated, completion: completion)
         return viewController
     }
@@ -106,7 +106,7 @@ public extension NavigatorType {
 
     @discardableResult
     func showViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType? = nil) -> ViewController? {
-        guard var navigationController =  sender ?? UIViewController.topMost else { return nil }
+        guard let navigationController =  sender ?? UIViewController.topMost else { return nil }
         navigationController.show(viewController, sender: navigationController)
         return viewController
     }
@@ -121,7 +121,7 @@ public extension NavigatorType {
     
     @discardableResult
     func showDetailController<DetailViewController: UIViewController & ServiceProviderProtocol>(_ detailViewController: DetailViewController, from sender: UIViewControllerType? = nil) -> DetailViewController? {
-        guard var master = sender ?? UIViewController.topMost else { return nil }
+        guard let master = sender ?? UIViewController.topMost else { return nil }
         guard master.splitViewController != nil else { return nil }
         master.showDetailViewController(detailViewController, sender: master)
         return detailViewController
