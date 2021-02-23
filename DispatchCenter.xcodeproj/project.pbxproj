@@ -30,9 +30,6 @@
 		B01247C925E3AE55006308C4 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4525DAE3CF0049157D /* Resolver.swift */; };
 		B0209D0D25DAD0690049157D /* DispatchCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0209D0325DAD0680049157D /* DispatchCenter.framework */; };
 		B0209D1425DAD0690049157D /* DispatchCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B0209D0625DAD0680049157D /* DispatchCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B0209D2425DADAF80049157D /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B0209D2125DADAF70049157D /* LICENSE */; };
-		B0209D2525DADAF80049157D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B0209D2225DADAF70049157D /* README.md */; };
-		B0209D2625DADAF80049157D /* DispatchCenter.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B0209D2325DADAF70049157D /* DispatchCenter.podspec */; };
 		B0209D3E25DAE3B50049157D /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D3D25DAE3B50049157D /* ServiceProvider.swift */; };
 		B0209D4225DAE3C10049157D /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4125DAE3C10049157D /* ServiceManager.swift */; };
 		B0209D4625DAE3CF0049157D /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0209D4525DAE3CF0049157D /* Resolver.swift */; };
@@ -66,6 +63,7 @@
 		B09DFB5A25E3FE0000514E8F /* ProviderEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09DFB5925E3FE0000514E8F /* ProviderEntry.swift */; };
 		B09DFB5B25E3FE0000514E8F /* ProviderEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09DFB5925E3FE0000514E8F /* ProviderEntry.swift */; };
 		B09DFB5C25E3FE0000514E8F /* ProviderEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09DFB5925E3FE0000514E8F /* ProviderEntry.swift */; };
+		B0A2452925E5601F000EE5FA /* DispatchCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = B0209D0625DAD0680049157D /* DispatchCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +120,7 @@
 		B087C80325E0EE960095954F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		B087C80A25E0F6FD0095954F /* UIViewController+TopMost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TopMost.swift"; sourceTree = "<group>"; };
 		B09DFB5925E3FE0000514E8F /* ProviderEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderEntry.swift; sourceTree = "<group>"; };
+		B0A2451925E55FFE000EE5FA /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +250,7 @@
 		B0209DA625DAEC3B0049157D /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				B0A2451925E55FFE000EE5FA /* CONTRIBUTING.md */,
 				B0209D2225DADAF70049157D /* README.md */,
 			);
 			name = Documentation;
@@ -263,6 +263,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A2452925E5601F000EE5FA /* DispatchCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,9 +466,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0209D2625DADAF80049157D /* DispatchCenter.podspec in Resources */,
-				B0209D2525DADAF80049157D /* README.md in Resources */,
-				B0209D2425DADAF80049157D /* LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
