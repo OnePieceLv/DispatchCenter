@@ -18,16 +18,33 @@ class URLRouterTestCase: BaseTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testWithURLString() throws {
+    func testWithoutServiceType() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         let url = "http://animate?name=li&age=1"
         
         container.register(url: url) { (resolve, parameter) -> Dog in
-            guard let param = parameter else { return Dog([:]) }
+            guard let param = parameter else { return Dog.create() }
             let name = param["name"]!
             let age = Int(param["age"]!)!
-            let dog = Dog.init(["name": name, "age": age])
+            let dog = Dog.create(["name": name, "age": age])
+            return dog
+        }
+        
+        let dog: Dog? = container.openURL(url: url)
+        XCTAssertNotNil(dog)
+        
+        XCTAssertEqual(dog?.name, "li")
+    }
+    
+    func testWithServiceType() throws {
+        let url = "http://animate?name=li&age=1"
+        
+        container.register(url: url) { (resolve, parameter) -> Dog in
+            guard let param = parameter else { return Dog.create() }
+            let name = param["name"]!
+            let age = Int(param["age"]!)!
+            let dog = Dog.create(["name": name, "age": age])
             return dog
         }
         
@@ -37,7 +54,7 @@ class URLRouterTestCase: BaseTestCase {
         XCTAssertEqual(dog?.name, "li")
     }
     
-    func testWithURL() throws {
+    func testWithURLComponents() throws {
         let urlStr = "http://animate?name=lv&age=1"
         let url = URL(string: urlStr)
         XCTAssertNotNil(url)
@@ -79,7 +96,7 @@ class URLRouterTestCase: BaseTestCase {
         _ = router.unregister(url: url)
         
         
-        let dog = router.resolve(serviceType: Dog.self, url: url)
+        let dog: Dog? = router.resolve(url: url)
         XCTAssertNil(dog)
         
     }

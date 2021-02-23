@@ -24,7 +24,7 @@ final class URLRouter {
     }
     
     
-    fileprivate func _register<ServiceProvider: ServiceProviderProtocol, Arguments>(url: String, factory: @escaping ((Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider>? {
+    fileprivate func _register<ServiceProvider: ServiceProviderProtocol, Arguments>(url: String, factory: @escaping ((Arguments) -> Any)) -> ProviderEntry<ServiceProvider>? {
         let entry = ProviderEntry(serviceType: ServiceProvider.self, argumentsType: Arguments.self, factory: factory)
         guard let key = url.asURL  else { return nil }
         self[key] = entry
@@ -38,10 +38,10 @@ final class URLRouter {
         return entry
     }
     
-    fileprivate func handle<ServiceProvider: ServiceProviderProtocol, Factory>(_ key: URL, serviceType: ServiceProvider.Type, invoke: @escaping (Factory) -> ServiceProvider) -> ServiceProvider? {
+    fileprivate func handle<ServiceProvider: ServiceProviderProtocol, Factory>(_ key: URL, invoke: @escaping (Factory) -> Any) -> ServiceProvider? {
         var service: ServiceProvider?
         if let entry = self[key] {
-            service = invoke(entry.factory as! Factory)
+            service = invoke(entry.factory as! Factory) as? ServiceProvider
         }
         return service
     }
@@ -58,7 +58,8 @@ extension URLRouter {
 
 extension URLRouter: URLResolver {
     
-    func resolve<ServiceProvider: ServiceProviderProtocol>(serviceType: ServiceProvider.Type, url: URLConvertible) -> ServiceProvider? {
+    func resolve<ServiceProvider: ServiceProviderProtocol>( url: URLConvertible, serviceType: ServiceProvider.Type? = nil) -> ServiceProvider? {
+        let service: ServiceProvider?
         guard let url = url.asURL else { return nil }
         guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
         let parameters = urlComponents.queryItems?.reduce([String:String]()) {
@@ -68,9 +69,11 @@ extension URLRouter: URLResolver {
             }
             return dict
         }
-        return handle(url, serviceType: serviceType) { (factory: ((URLResolver, [String: String]?)) -> ServiceProvider) -> ServiceProvider in
+        typealias Factory = ((URLResolver, [String:String]?)) -> Any
+        service = handle(url) { (factory: Factory) -> Any in
             return factory((self, parameters))
         }
+        return service
     }
     
 }

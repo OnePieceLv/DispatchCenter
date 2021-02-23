@@ -89,6 +89,88 @@ class ServiceManagerTestCase: BaseTestCase {
         
     }
     
+    func testWithoutServiceType() throws {
+        let container = ServiceManager()
+        
+        /// no arguments
+        container.register() { (container) -> Dog in
+            return Dog.create()
+        }
+                
+        
+        let dog: Dog? = container.resolve()
+        
+        XCTAssertNotNil(dog)
+        
+        /// dictionary arguments
+        container.register() { (_, parameters: [String: Any]) -> Dog in
+            return Dog.create(parameters)
+        }
+        
+        let dog2: Dog? = container.resolve(arguments: ["name": "cat", "age": 2])
+        XCTAssertNotNil(dog2)
+        XCTAssertEqual(dog2?.name, "cat")
+        XCTAssertEqual(dog2?.age, 2)
+        XCTAssertNotEqual(dog2?.age, 3)
+        XCTAssertNotEqual(dog2?.name, "xx")
+        
+        /// tuple arguments
+        container.register() { (container, arguments: (name: String, age: Int)) -> Dog in
+            let animate = Dog.create(["name": arguments.name, "age": arguments.age])
+            return animate
+        }
+        
+        let animate: Dog? = container.resolve(arguments: (name: "lion", age: 2))
+
+        XCTAssertNotNil(animate)
+        XCTAssertEqual(animate?.name, "lion")
+        XCTAssertEqual(animate?.age, 2)
+        XCTAssertNotEqual(animate?.age, 3)
+        
+    }
+    
+    func testWithServiceType() throws {
+        let container = ServiceManager()
+        
+        /// no arguments
+        container.register(Dog.self) { (container) -> Dog in
+            return Dog.create()
+        }
+                
+        
+        let dog = container.resolve(Dog.self)
+        
+        XCTAssertNotNil(dog)
+        
+        
+        /// dictionary arguments
+        container.register(Dog.self) { (_, parameters: [String: Any]) -> Dog in
+            return Dog.create(parameters)
+        }
+        
+        let dog2 = container.resolve(Dog.self, arguments: ["name": "cat", "age": 2])
+        XCTAssertNotNil(dog2)
+        XCTAssertEqual(dog2?.name, "cat")
+        XCTAssertEqual(dog2?.age, 2)
+        XCTAssertNotEqual(dog2?.age, 3)
+        XCTAssertNotEqual(dog2?.name, "xx")
+        
+        /// tuple arguments
+        container.register(Dog.self) { (container, arguments: (name: String, age: Int)) -> Dog in
+            let animate = Dog.create(["name": arguments.name, "age": arguments.age])
+            return animate
+        }
+        
+        let animate = container.resolve(Dog.self, arguments: (name: "lion", age: 2))
+
+        XCTAssertNotNil(animate)
+        XCTAssertEqual(animate?.name, "lion")
+        XCTAssertEqual(animate?.age, 2)
+        XCTAssertNotEqual(animate?.age, 3)
+    }
+    
+    
+    
     
 
 //    func testPerformanceExample() throws {

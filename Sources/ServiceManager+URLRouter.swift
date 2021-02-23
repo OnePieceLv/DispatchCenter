@@ -17,7 +17,8 @@ public extension ServiceManager {
 
 public extension ServiceManager {
     
-    func openURL<ServiceProvider: ServiceProviderProtocol>(url: URLConvertible, serviceType: ServiceProvider.Type) -> ServiceProvider? {
-        return self.urlRouter.resolve(serviceType: serviceType, url: url)
+    func openURL<ServiceProvider: ServiceProviderProtocol>(url: URLConvertible, serviceType: ServiceProvider.Type? = nil) -> ServiceProvider? {
+        let service: ServiceProvider? = self.urlRouter.resolve(url: url, serviceType: serviceType)
+        return service
     }
 }

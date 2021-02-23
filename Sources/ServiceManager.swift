@@ -37,6 +37,21 @@ public final class ServiceManager {
     }
     
     @discardableResult
+    public func register<ServiceProvider: ServiceProviderProtocol>(name: String? = nil, factory: @escaping ((Resolver) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
+        return _register(ServiceProvider.self, factory: factory, name: name, option: nil)
+    }
+    
+    @discardableResult
+    public func register<ServiceProvider: ServiceProviderProtocol, Arguments>(name: String? = nil, factory: @escaping ((Resolver, Arguments) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
+        return _register(ServiceProvider.self, factory: factory, name: name, option: nil)
+    }
+    
+    @discardableResult
+    public func register<ServiceProvider: ServiceProviderProtocol>(name: String? = nil, factory: @escaping ((Resolver, Dictionary<String, Any>) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
+        return _register(ServiceProvider.self, factory: factory, name: name, option: nil)
+    }
+    
+    @discardableResult
     public func register<ServiceProvider: ServiceProviderProtocol>(_ serviceType: ServiceProvider.Type, name: String? = nil, factory: @escaping ((Resolver) -> ServiceProvider)) -> ProviderEntry<ServiceProvider> {
         return _register(serviceType, factory: factory, name: name, option: nil)
     }
@@ -93,25 +108,29 @@ extension ServiceManager: _Resolver {
 
 
 extension ServiceManager: Resolver {
-    public func resolve<ServiceProvider>(_ service: ServiceProvider.Type) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
-        return resolve(service, name: nil)
+    public func resolve<ServiceProvider>(_ serviceType: ServiceProvider.Type? = nil) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
+        return resolve(serviceType, name: nil)
     }
     
-    public func resolve<ServiceProvider>(_ service: ServiceProvider.Type, name: String?) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
-        return _resolve(name: name) { (factory: (Resolver) -> Any) in
+    public func resolve<ServiceProvider>(_ serviceType: ServiceProvider.Type? = nil, name: String?) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
+        let service: ServiceProvider?
+        service =  _resolve(name: name) { (factory: (Resolver) -> Any) in
             factory(self)
         }
+        return service
     }
     
-    public func resolve<ServiceProvider, Arguments>(_ service: ServiceProvider.Type, arguments: Arguments) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
-        return resolve(service, arguments: arguments, name: nil)
+    public func resolve<ServiceProvider, Arguments>(_ serviceType: ServiceProvider.Type? = nil, arguments: Arguments) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
+        return resolve(serviceType, arguments: arguments, name: nil)
     }
     
-    public func resolve<ServiceProvider, Arguments>(_ service: ServiceProvider.Type, arguments: Arguments, name: String?) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
+    public func resolve<ServiceProvider, Arguments>(_ serviceType: ServiceProvider.Type? = nil, arguments: Arguments, name: String?) -> ServiceProvider? where ServiceProvider : ServiceProviderProtocol {
+        let service: ServiceProvider?
         typealias Factory = ((Resolver, Arguments)) -> Any
-        return _resolve(name: name) { (factory: Factory) -> Any in
+        service = _resolve(name: name) { (factory: Factory) -> Any in
             return factory((self, arguments))
         }
+        return service
     }
     
     
