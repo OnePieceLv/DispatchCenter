@@ -8,17 +8,20 @@
 import Foundation
 import DispatchCenter
 
-final class Navigator: NavigatorType {}
+final class RouteManager: NavigatorType {
+    
+    static let `default`: RouteManager = RouteManager()
+    
+    let container: ServiceManager = ServiceManager()
+}
 
-let container = ServiceManager()
-
-let navigator = Navigator()
 
 extension CourseViewController: ServiceProviderProtocol {
     static func create(_ arguments: [String : Any]? = nil) -> Self {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        let instance = storyboard.instantiateViewController(identifier: "CourseViewController") as! Self
-        return instance
+        let instance = storyboard.instantiateViewController(identifier: "CourseViewController") as? CourseViewController
+        instance?.id = (arguments?["id"] as? Int)
+        return instance as! Self
     }
 }
 
@@ -32,8 +35,12 @@ extension SchoolViewController: ServiceProviderProtocol {
 
 
 extension LessonViewController: ServiceProviderProtocol {
-    static func create(_ arguments: [String : Any]? = nil) -> LessonViewController {
-        let lesson = LessonViewController(nibName: "LessonViewController", bundle: nil)
+    static func create(_ arguments: [String : Any]? = nil) -> Self {
+        let lesson = LessonViewController(nibName: "LessonViewController", bundle: nil) as! Self
+        guard let id = arguments?["id"] as? Int else {
+            return lesson
+        }
+        lesson.id = id
         return lesson
     }
 }

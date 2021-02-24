@@ -167,6 +167,16 @@ class ServiceManagerTestCase: BaseTestCase {
         XCTAssertEqual(animate?.name, "lion")
         XCTAssertEqual(animate?.age, 2)
         XCTAssertNotEqual(animate?.age, 3)
+        
+        container.register(Rabbit.self) { (_, id: Int) -> Rabbit in
+            let rabbit = Rabbit.create(["id": id])
+            return rabbit
+        }
+        
+        let rabbit = container.resolve(Rabbit.self, arguments: 1)
+        
+        XCTAssertNotNil(rabbit)
+        XCTAssertEqual(rabbit?.id, 1)
     }
     
     

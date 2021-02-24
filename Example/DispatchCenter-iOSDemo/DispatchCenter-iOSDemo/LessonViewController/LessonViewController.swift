@@ -7,11 +7,16 @@
 
 import UIKit
 
-final class LessonViewController: UIViewController {
+class LessonViewController: UIViewController {
+    
+    var id: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        guard let id = id else {
+            return
+        }
+        self.navigationItem.title = "课程ID: \(id)"
         // Do any additional setup after loading the view.
     }
 

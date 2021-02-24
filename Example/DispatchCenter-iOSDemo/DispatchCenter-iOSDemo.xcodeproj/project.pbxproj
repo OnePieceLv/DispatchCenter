@@ -20,7 +20,7 @@
 		B012473B25E2D7EA006308C4 /* DispatchCenter_iOSDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012473A25E2D7EA006308C4 /* DispatchCenter_iOSDemoUITests.swift */; };
 		B01247FC25E3EC08006308C4 /* CourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01247FB25E3EC08006308C4 /* CourseViewController.swift */; };
 		B012480125E3EC23006308C4 /* SchoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012480025E3EC23006308C4 /* SchoolViewController.swift */; };
-		B0A2439325E41504000EE5FA /* ServiceProviderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2439225E41504000EE5FA /* ServiceProviderManager.swift */; };
+		B0A2439325E41504000EE5FA /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2439225E41504000EE5FA /* RouteManager.swift */; };
 		B0A2446B25E43319000EE5FA /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A2446925E43319000EE5FA /* LessonViewController.swift */; };
 		B0A2446C25E43319000EE5FA /* LessonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0A2446A25E43319000EE5FA /* LessonViewController.xib */; };
 /* End PBXBuildFile section */
@@ -65,7 +65,7 @@
 		B012473C25E2D7EA006308C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B01247FB25E3EC08006308C4 /* CourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewController.swift; sourceTree = "<group>"; };
 		B012480025E3EC23006308C4 /* SchoolViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolViewController.swift; sourceTree = "<group>"; };
-		B0A2439225E41504000EE5FA /* ServiceProviderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderManager.swift; sourceTree = "<group>"; };
+		B0A2439225E41504000EE5FA /* RouteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		B0A2446925E43319000EE5FA /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 		B0A2446A25E43319000EE5FA /* LessonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonViewController.xib; sourceTree = "<group>"; };
 		D9F1A78807A2640444641203 /* Pods-DispatchCenter-iOSDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DispatchCenter-iOSDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-DispatchCenter-iOSDemoUITests/Pods-DispatchCenter-iOSDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 				B012472125E2D7E9006308C4 /* Assets.xcassets */,
 				B012472325E2D7E9006308C4 /* LaunchScreen.storyboard */,
 				B012472625E2D7E9006308C4 /* Info.plist */,
-				B0A2439225E41504000EE5FA /* ServiceProviderManager.swift */,
+				B0A2439225E41504000EE5FA /* RouteManager.swift */,
 			);
 			path = "DispatchCenter-iOSDemo";
 			sourceTree = "<group>";
@@ -467,7 +467,7 @@
 				B0A2446B25E43319000EE5FA /* LessonViewController.swift in Sources */,
 				B012471D25E2D7E7006308C4 /* MasterViewController.swift in Sources */,
 				B01247FC25E3EC08006308C4 /* CourseViewController.swift in Sources */,
-				B0A2439325E41504000EE5FA /* ServiceProviderManager.swift in Sources */,
+				B0A2439325E41504000EE5FA /* RouteManager.swift in Sources */,
 				B012480125E3EC23006308C4 /* SchoolViewController.swift in Sources */,
 				B012471925E2D7E7006308C4 /* AppDelegate.swift in Sources */,
 				B012471B25E2D7E7006308C4 /* SceneDelegate.swift in Sources */,

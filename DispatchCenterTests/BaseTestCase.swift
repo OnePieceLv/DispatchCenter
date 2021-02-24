@@ -46,6 +46,15 @@ class Dog: ServiceProviderProtocol {
 //    }
 }
 
+struct Rabbit: ServiceProviderProtocol {
+    
+    var id: Int?
+    
+    static func create(_ arguments: [String: Any]? = nil) -> Self {
+        return Rabbit(id: (arguments?["id"] as? Int))
+    }
+}
+
 class BaseTestCase: XCTestCase {
     
     var container: ServiceManager = ServiceManager()

@@ -16,7 +16,8 @@ class SchoolViewController: UIViewController {
     }
     
     @IBAction func chooseCourse(_ sender: UIButton) {
-        let course = container.resolve(CourseViewController.self)!
+        let navigator = RouteManager.default
+        let course = navigator.container.resolve(CourseViewController.self)!
         navigator.presentViewController(course, animated: true) {
             print("presented")
         }

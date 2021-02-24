@@ -6,9 +6,8 @@
 //
 
 import UIKit
-import DispatchCenter
 
-let url = "dispatch://course/1/lesson"
+let url = "dispatch://course/lesson?id=1"
 
 class MasterViewController: UITableViewController {
     
@@ -20,8 +19,9 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        container.register(CourseViewController.self) { (_) -> CourseViewController in
-            let course = CourseViewController.create()
+        let container = RouteManager.default.container
+        container.register(CourseViewController.self) { (_, id: Int) -> CourseViewController in
+            let course = CourseViewController.create(["id": id])
             return course
         }
         
@@ -30,9 +30,13 @@ class MasterViewController: UITableViewController {
             return school
         }
         
-        container.register(url: url) { (_, _) -> LessonViewController in
-            return LessonViewController.create()
-            
+        container.register(url: url) { (_, parameter: [String: String]?) -> LessonViewController in
+            var arguments: [String: Any] = [:]
+            if let idstr = parameter?["id"], let id = Int(idstr) {
+                arguments["id"] = id
+            }
+            let lesson = LessonViewController.create(arguments)
+            return lesson
         }
         
     }
@@ -53,9 +57,11 @@ class MasterViewController: UITableViewController {
     }
     
     func segue(name:String) -> Void {
+        let navigator = RouteManager.default
+        let container = navigator.container
         switch name {
         case "课程":
-            let course = container.resolve(CourseViewController.self)!
+            let course = container.resolve(CourseViewController.self, arguments: 1)!
             navigator.showViewController(course, from: self)
         case "学校":
             let school = container.resolve(SchoolViewController.self)!

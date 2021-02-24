@@ -8,6 +8,8 @@
 import UIKit
 
 class CourseViewController: UIViewController {
+    
+    var id: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +23,8 @@ class CourseViewController: UIViewController {
 //        navigator.presentURL(url, controllerType: LessonViewController.self, container: container, animated: true) {
 //            print("present to lesson with url")
 //        }
-        navigator.pushURL(url, controllerType: LessonViewController.self, container: container, animated: true)
+        let container = RouteManager.default.container
+        RouteManager.default.pushURL(url, controllerType: LessonViewController.self, container: container, animated: true)
     }
     /*
     // MARK: - Navigation
