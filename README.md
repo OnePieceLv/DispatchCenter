@@ -119,7 +119,6 @@ self.showViewController(lesson, sender: nil)
 DispatchCenter support navigate through conform NavigatorType protocol。see below code
 
 ```swift
-```swift
 // define a RouteManager and confirm NavigatorType protocol
 // register url
 // navigate with url
@@ -148,7 +147,6 @@ extension RouteManager {
     }
 }
 
-```
 ```
 
 more usage in [Example](https://github.com/OnePieceLv/DispatchCenter/tree/main/Example/DispatchCenter-iOSDemo) and [test case](https://github.com/OnePieceLv/DispatchCenter/tree/main/DispatchCenterTests)
