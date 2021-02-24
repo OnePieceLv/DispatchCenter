@@ -6,11 +6,11 @@
 
 When an app becomes more and more complex, there is a lot of dependencies on business modules, like this:
 
-![dependencies-bs.jpg](https://raw.githubusercontent.com/OnePieceLv/DispatchCenter/main/images/readme/dependencies-bs.svg)
+<img src="https://raw.githubusercontent.com/OnePieceLv/DispatchCenter/main/images/readme/dependencies-bs.svg" alt="dependencies-bs" width="400" height="300">
 
 With the DispatchCenter architecture, we hope to achieve clear module responsibilities and boundaries, improve code quality, reduce complex dependencies, improve development efficiency, and make it easy to identify problems. like this：
 
-![mediator-bs.jpg](https://raw.githubusercontent.com/OnePieceLv/DispatchCenter/main/images/readme/mediator-bs.svg)
+<img src="https://raw.githubusercontent.com/OnePieceLv/DispatchCenter/main/images/readme/mediator-bs.svg" alt="mediator-bs" width="400" height="300">
 
 # Feature
 
