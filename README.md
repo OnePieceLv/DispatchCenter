@@ -30,7 +30,7 @@ With the DispatchCenter architecture, we hope to achieve clear module responsibi
 # Installation
 
 ```ruby
-pod 'DispatchCenter', '~> 1.1.0'
+pod 'DispatchCenter', '~> 1.1.1'
 ```
 
 # Usage
@@ -100,7 +100,7 @@ extension LessonViewController: ServiceProviderProtocol {
 }
 
 // url with query parameters
-let url= "dispatch://course/lesson?id=1"
+let url= "dispatch://course/lesson"
 container.register(url: url) { (_, parameter: [String: String]?) -> LessonViewController in
             var arguments: [String: Any] = [:]
             if let idstr = parameter?["id"], let id = Int(idstr) {
@@ -110,7 +110,8 @@ container.register(url: url) { (_, parameter: [String: String]?) -> LessonViewCo
             return 
         }
 
-let lesson = container.openURL(url: url)
+let resolveURL = "dispatch://course/lesson?id=1"
+let lesson = container.openURL(url: resolveURL)
 self.showViewController(lesson, sender: nil)
 ```
 
@@ -123,7 +124,7 @@ DispatchCenter support navigate through conform NavigatorType protocol。see bel
 // register url
 // navigate with url
 
-let url= "dispatch://course/lesson?id=1"
+let url= "dispatch://course/lesson"
 
 final class RouteManager: NavigatorType {
     
@@ -143,6 +144,7 @@ final class RouteManager: NavigatorType {
 
 extension RouteManager {
     func presentController() -> Void {
+        let url = "dispatch://course/lesson?id=1"
         self.presentURL(url, controllerType: LessonViewController.self, container: container, animated: true)
     }
 }

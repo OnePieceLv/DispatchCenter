@@ -155,11 +155,11 @@
 				B012471825E2D7E7006308C4 /* AppDelegate.swift */,
 				B012471A25E2D7E7006308C4 /* SceneDelegate.swift */,
 				B012471C25E2D7E7006308C4 /* MasterViewController.swift */,
+				B0A2439225E41504000EE5FA /* RouteManager.swift */,
 				B012471E25E2D7E7006308C4 /* Main.storyboard */,
 				B012472125E2D7E9006308C4 /* Assets.xcassets */,
 				B012472325E2D7E9006308C4 /* LaunchScreen.storyboard */,
 				B012472625E2D7E9006308C4 /* Info.plist */,
-				B0A2439225E41504000EE5FA /* RouteManager.swift */,
 			);
 			path = "DispatchCenter-iOSDemo";
 			sourceTree = "<group>";

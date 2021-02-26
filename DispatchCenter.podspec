@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "DispatchCenter"
-  s.version      = "1.1.0"
+  s.version      = "1.1.1"
   s.summary      = "A library for solving complex business scheduling, written in Swift"
   s.homepage     = "https://github.com/OnePieceLv/DispatchCenter"
   s.license      = { :type => "MIT", :file => "LICENSE" }

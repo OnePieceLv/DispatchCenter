@@ -18,10 +18,10 @@ class URLRouterTestCase: BaseTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testWithoutServiceType() throws {
+    func testWithoutparameter() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let url = "http://animate?name=li&age=1"
+        let url = "http://animate"
         
         container.register(url: url) { (resolve, parameter) -> Dog in
             guard let param = parameter else { return Dog.create() }
@@ -31,14 +31,15 @@ class URLRouterTestCase: BaseTestCase {
             return dog
         }
         
-        let dog: Dog? = container.openURL(url: url)
+        let resolveURL = "http://animate"
+        let dog: Dog? = container.openURL(url: resolveURL)
         XCTAssertNotNil(dog)
         
-        XCTAssertEqual(dog?.name, "li")
+        XCTAssertNotEqual(dog?.name, "li")
     }
     
-    func testWithServiceType() throws {
-        let url = "http://animate?name=li&age=1"
+    func testWithQueryParameter() throws {
+        let url = "http://animate"
         
         container.register(url: url) { (resolve, parameter) -> Dog in
             guard let param = parameter else { return Dog.create() }
@@ -48,10 +49,12 @@ class URLRouterTestCase: BaseTestCase {
             return dog
         }
         
-        let dog = container.openURL(url: url, serviceType: Dog.self)
+        let resolveURL = "http://animate?name=li&age=1"
+        let dog = container.openURL(url: resolveURL, serviceType: Dog.self)
         XCTAssertNotNil(dog)
         
         XCTAssertEqual(dog?.name, "li")
+        XCTAssertEqual(dog?.age, 1)
     }
     
     func testWithURLComponents() throws {
@@ -82,7 +85,7 @@ class URLRouterTestCase: BaseTestCase {
     func testWithUnregister() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let url = "http://animate?name=li&age=1"
+        let url = "http://animate"
         let router = URLRouter.init()
         
         _ = router.register(url: url) { (resolver, parameter) -> Dog in
@@ -104,7 +107,7 @@ class URLRouterTestCase: BaseTestCase {
     func testWithCanOpenURL() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        let url = "http://animate?name=li&age=1"
+        let url = "http://animate"
         let router = URLRouter.init()
         
         _ = router.register(url: url) { (resolver, parameter) -> Dog in
@@ -122,6 +125,10 @@ class URLRouterTestCase: BaseTestCase {
         let url2 = "http://animate?name=elephant&age=2"
         let isCan2 = router.canOpenURL(url: url2)
         XCTAssertFalse(isCan2)
+        
+        let resolveURL = "http://animate?name=elephant&age=2"
+        let isCan3 = router.canOpenURL(url: resolveURL)
+        XCTAssertFalse(isCan3)
         
     }
 

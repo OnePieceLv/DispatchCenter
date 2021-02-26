@@ -61,7 +61,7 @@ extension URLRouter: URLResolver {
     func resolve<ServiceProvider: ServiceProviderProtocol>( url: URLConvertible, serviceType: ServiceProvider.Type? = nil) -> ServiceProvider? {
         let service: ServiceProvider?
         guard let url = url.asURL else { return nil }
-        guard let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
+        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else { return nil }
         let parameters = urlComponents.queryItems?.reduce([String:String]()) {
             var dict = $0
             if let value = $1.value {
@@ -69,8 +69,10 @@ extension URLRouter: URLResolver {
             }
             return dict
         }
+        urlComponents.query = nil
+        guard let keyURL = urlComponents.url else { return nil }
         typealias Factory = ((URLResolver, [String:String]?)) -> Any
-        service = handle(url) { (factory: Factory) -> Any in
+        service = handle(keyURL) { (factory: Factory) -> Any in
             return factory((self, parameters))
         }
         return service

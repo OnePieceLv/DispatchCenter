@@ -30,7 +30,8 @@ class MasterViewController: UITableViewController {
             return school
         }
         
-        container.register(url: url) { (_, parameter: [String: String]?) -> LessonViewController in
+        let registerUrl = "dispatch://course/lesson"
+        container.register(url: registerUrl) { (_, parameter: [String: String]?) -> LessonViewController in
             var arguments: [String: Any] = [:]
             if let idstr = parameter?["id"], let id = Int(idstr) {
                 arguments["id"] = id
@@ -67,6 +68,7 @@ class MasterViewController: UITableViewController {
             let school = container.resolve(SchoolViewController.self)!
             navigator.pushViewController(school, animated: false)
         case "present":
+            
             navigator.presentURL(url, controllerType: LessonViewController.self, container: container, animated: true) {
                 print("present")
             }
