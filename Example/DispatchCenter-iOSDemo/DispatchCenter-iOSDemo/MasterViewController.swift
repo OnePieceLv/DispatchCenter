@@ -63,13 +63,13 @@ class MasterViewController: UITableViewController {
         switch name {
         case "课程":
             let course = container.resolve(CourseViewController.self, arguments: 1)!
-            navigator.showViewController(course, from: self)
+            navigator.showViewController(course, from: self, underNav: true)
         case "学校":
             let school = container.resolve(SchoolViewController.self)!
             navigator.pushViewController(school, animated: false)
         case "present":
             
-            navigator.presentURL(url, controllerType: LessonViewController.self, container: container, animated: true) {
+            navigator.presentURL(url, controllerType: LessonViewController.self, underNav: true, container: container, animated: true) {
                 print("present")
             }
         case "push":

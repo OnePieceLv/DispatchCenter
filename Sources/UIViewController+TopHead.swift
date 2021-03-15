@@ -12,7 +12,7 @@ import UIKit
 @available(iOS 8.0, tvOS 9.0, *)
 extension UIViewController {
     private class var sharedApp: UIApplication? {
-        let selector = NSSelectorFromString("sharedApp")
+        let selector = NSSelectorFromString("sharedApplication")
         return UIApplication.perform(selector)?.takeUnretainedValue() as? UIApplication
     }
     
