@@ -30,7 +30,7 @@ With the DispatchCenter architecture, we hope to achieve clear module responsibi
 # Installation
 
 ```ruby
-pod 'DispatchCenter', '~> 1.1.1'
+pod 'DispatchCenter', '~> 1.2.0'
 ```
 
 # Usage

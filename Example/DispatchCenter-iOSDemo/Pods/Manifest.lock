@@ -1,5 +1,5 @@
 PODS:
-  - DispatchCenter (1.1.1)
+  - DispatchCenter (1.2.0)
 
 DEPENDENCIES:
   - DispatchCenter (from `../../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  DispatchCenter: e8606673ccbe3d07743291a6ef6c55c989bae4b8
+  DispatchCenter: 75a3fe330ebd8fcd9707f69614d06379c61c9352
 
 PODFILE CHECKSUM: d5008bb76d2df13c85358367bc1bb3aad0e9f1b8
 

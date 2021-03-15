@@ -40,17 +40,17 @@ public protocol NavigatorType {
     func pushViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UINavigationControllerType?, animated: Bool) -> ViewController?
     
     @discardableResult
-    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?, container: ServiceManager, animated: Bool, completion: (() -> Void)?) -> ViewController?
+    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?, underNav: Bool, container: ServiceManager, animated: Bool, completion: (() -> Void)?) -> ViewController?
     
     @discardableResult
-    func presentViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType?, animated: Bool, completion: (() -> Void)?) -> ViewController?
+    func presentViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType?, underNav: Bool, animated: Bool, completion: (() -> Void)?) -> ViewController?
 
     
     @discardableResult
-    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?, container: ServiceManager) -> ViewController?
+    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType?, underNav: Bool, container: ServiceManager) -> ViewController?
     
     @discardableResult
-    func showViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType?) -> ViewController?
+    func showViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType?, underNav: Bool) -> ViewController?
     
     @discardableResult
     func showDetailURL<DetailViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: DetailViewController.Type, from sender: UIViewControllerType?, container: ServiceManager) -> DetailViewController?
@@ -73,41 +73,52 @@ public extension NavigatorType {
     
     @discardableResult
     func pushViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UINavigationControllerType? = nil, animated: Bool) -> ViewController? {
-        guard let navigationController = (sender ?? UIViewController.topMost?.navigationController) else { return nil }
+        guard let navigationController = (sender ?? UIViewController.topHead?.navigationController) else { return nil }
         navigationController.pushViewController(viewController, animated: animated)
         return viewController
     }
     
     
     @discardableResult
-    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil, container: ServiceManager, animated: Bool, completion: (() -> Void)?) -> ViewController? {
+    func presentURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil, underNav: Bool = false, container: ServiceManager, animated: Bool, completion: (() -> Void)?) -> ViewController? {
         if let viewContoller = container.openURL(url: url, serviceType: controllerType) {
-            return self.presentViewController(viewContoller, from: sender, animated: animated, completion: completion)
+            return self.presentViewController(viewContoller, from: sender, underNav: underNav, animated: animated, completion: completion)
         }
         return nil
     }
     
     @discardableResult
-    func presentViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType? = nil, animated: Bool, completion: (() -> Void)?) -> ViewController?{
-        guard let navigationController = sender ?? UIViewController.topMost else { return nil }
-        navigationController.present(viewController, animated: animated, completion: completion)
+    func presentViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType? = nil, animated: Bool, underNav: Bool, completion: (() -> Void)?) -> ViewController?{
+        guard let vc = sender ?? UIViewController.topHead else { return nil }
+        if underNav {
+            let nav = UINavigationController(rootViewController: viewController)
+            vc.present(nav, animated: animated, completion: completion)
+        } else {
+            vc.present(viewController, animated: animated, completion: completion)
+        }
         return viewController
     }
     
     
     @discardableResult
-    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil, container: ServiceManager) -> ViewController? {
+    func showURL<ViewController: UIViewController & ServiceProviderProtocol>(_ url: URLConvertible, controllerType: ViewController.Type, from sender: UIViewControllerType? = nil, underNav: Bool = false, container: ServiceManager) -> ViewController? {
         if let viewContoller = container.openURL(url: url, serviceType: controllerType) {
-            return self.showViewController(viewContoller, from: sender)
+            return self.showViewController(viewContoller, from: sender, underNav: underNav)
         }
         return nil
     }
     
 
     @discardableResult
-    func showViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType? = nil) -> ViewController? {
-        guard let navigationController =  sender ?? UIViewController.topMost else { return nil }
-        navigationController.show(viewController, sender: navigationController)
+    func showViewController<ViewController: UIViewController & ServiceProviderProtocol>(_ viewController: ViewController, from sender: UIViewControllerType? = nil, underNav: Bool) -> ViewController? {
+        guard let vc =  sender ?? UIViewController.topHead else { return nil }
+        if underNav {
+            let nav = UINavigationController(rootViewController: viewController)
+            vc.show(nav, sender: vc)
+        } else {
+            
+            vc.show(viewController, sender: vc)
+        }
         return viewController
     }
     
@@ -121,7 +132,7 @@ public extension NavigatorType {
     
     @discardableResult
     func showDetailController<DetailViewController: UIViewController & ServiceProviderProtocol>(_ detailViewController: DetailViewController, from sender: UIViewControllerType? = nil) -> DetailViewController? {
-        guard let master = sender ?? UIViewController.topMost else { return nil }
+        guard let master = sender ?? UIViewController.topHead else { return nil }
         guard master.splitViewController != nil else { return nil }
         master.showDetailViewController(detailViewController, sender: master)
         return detailViewController

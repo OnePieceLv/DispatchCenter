@@ -623,6 +623,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.nengxuehui.DispatchCenter;
 				PRODUCT_NAME = DispatchCenter;
 				SDKROOT = appletvos;
@@ -649,6 +650,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.nengxuehui.DispatchCenter;
 				PRODUCT_NAME = DispatchCenter;
 				SDKROOT = appletvos;
@@ -844,6 +846,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.nengxuehui.DispatchCenter;
 				PRODUCT_NAME = DispatchCenter;
 				SKIP_INSTALL = YES;
@@ -873,6 +876,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.nengxuehui.DispatchCenter;
 				PRODUCT_NAME = DispatchCenter;
 				SKIP_INSTALL = YES;
@@ -938,6 +942,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.nengxuehui.DispatchCenter;
 				PRODUCT_NAME = DispatchCenter;
 				SDKROOT = macosx;
@@ -964,6 +969,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 1.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = cn.nengxuehui.DispatchCenter;
 				PRODUCT_NAME = DispatchCenter;
 				SDKROOT = macosx;
